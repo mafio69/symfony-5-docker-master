@@ -1,4 +1,4 @@
-FROM php:fpm-alpine
+FROM php:7.4-fpm-alpine
 
 COPY wait-for-it.sh /usr/bin/wait-for-it
 
@@ -8,10 +8,10 @@ RUN apk --update --no-cache add git
 
 RUN docker-php-ext-install pdo_mysql
 
-RUN apk --no-cache add pcre-dev ${PHPIZE_DEPS} \
-  && pecl install xdebug \
-  && docker-php-ext-enable xdebug \
-  && apk del pcre-dev ${PHPIZE_DEPS}
+RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
+    && pecl install xdebug-3.0.2 \
+    && docker-php-ext-enable xdebug \
+    && apk del -f .build-deps
 
 # Install Node.js
 RUN curl -sL https://deb.nodesource.com/setup_8.x

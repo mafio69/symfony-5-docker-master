@@ -28,6 +28,11 @@ services:
       - DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@database:3306/${DATABASE_NAME}?serverVersion=5.7
     volumes:
       - ../src:/var/www
+    extra_hosts:
+      - "localbox:192.168.99.1"
+    ports:
+      - "9010:9010"
+
 
   nginx:
     container_name: server-nginx
@@ -42,7 +47,7 @@ services:
     depends_on:
       - php-fpm
     ports:
-      - "80:80"
+      - "8080:80"
       - "443:443"
 
 

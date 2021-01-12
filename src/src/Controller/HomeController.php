@@ -19,10 +19,12 @@ class HomeController extends AbstractController
      */
     public function showListPersons(PersonRepository $personRepository)
     {
+        xdebug_info();
+        phpinfo();
         $users = $personRepository->findAll();
 
         return $this->render('Person/showListPersons.html.twig', [
-            'users' => $users,
+            'users' => $users
         ]);
     }
 
