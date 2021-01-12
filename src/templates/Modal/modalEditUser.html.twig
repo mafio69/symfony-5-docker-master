@@ -1,0 +1,46 @@
+<div id="editPersonModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add user</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editUser">
+                    <div class="form-group">
+                        <label for="loginE">Login</label>
+                        <input name="login" class="form-control" id="loginE"
+                               placeholder="Enter Login">
+                    </div>
+                    <div class="form-group">
+                        <label for="fnameE">First Name</label>
+                        <input name="fname" class="form-control" id="fnameE"
+                               placeholder="Enter first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lnameE">Last Name</label>
+                        <input name="lname" class="form-control" id="lnameE"
+                               placeholder="Enter last name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State</label>
+                            <select id="state" name="state" class="form-control">
+                                {% for key, state in states %}
+                                    <option value="{{ key }}">{{ state }}</option>"
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <input type="hidden" id="id" name="id" value="">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="closeEdit" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="saveEdit" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

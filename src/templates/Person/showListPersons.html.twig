@@ -5,18 +5,64 @@
         <div class="container-table100">
             <div class="wrap-table100">
                 <div style="margin: 3rem">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                    <div class="div">
+                    <button style="right: revert" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPersonModal">
                         Add user
                     </button>
+                    </div>
+                    <label for="filter">Filter</label>
+                    <div id="borderForm">
+                    <form id="filter" accept-charset="UTF-8" action="{{ path('show_persons') }}" method="post">
+                        <div class="row">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Login</label>
+                                <input name="login" class="form-control" id="login" aria-describedby="emailHelp"
+                                       placeholder="Enter Login" value="{{ filterPerson.login }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">First Name</label>
+                                <input name="fname" class="form-control" id="fname" aria-describedby="emailHelp"
+                                       placeholder="Enter first name" value="{{ filterPerson.fname ?? '' }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Last Name</label>
+                                <input name="lname" class="form-control" id="lname" aria-describedby="emailHelp"
+                                       placeholder="Enter last name" value="{{ filterPerson.lname ?? '' }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <select id="state" name="state" class="form-control">
+                                    {% for key, state in states %}
+                                        <option {% if(filterPerson.state != false and  filterPerson.state == key) %}
+                                                 selected="selected"
+                                                {% endif %}
+                                                value="{{ key }}">{{ state }}</option>"
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <button type="submit" id="btn-filter" style="margin-left:4rem; padding:1rem 2.5rem 1rem 2.5rem" class="btn btn-outline-info" >
+                                filter
+                            </button>
+                           {# <button type="reset" style="margin-left:4rem; padding:1rem 2.5rem 1rem 2.5rem" class="btn btn-dark" >
+                                Reset
+                            </button>#}
+                        </div>
+                    </form>
+                    </div>
                 </div>
                 <div class="table100 ver1 m-b-110">
                     <div class="table100-head">
                         <table>
                             <thead>
                             <tr class="row100 head">
+                                <th class="cell100 column1">Login</th>
                                 <th class="cell100 column1">Last name</th>
                                 <th class="cell100 column2">First name</th>
                                 <th class="cell100 column3">Status</th>
+                                <th class="cell100 column3">ACTION</th>
+
                             </tr>
                             </thead>
                         </table>
@@ -27,9 +73,11 @@
                             <tbody>
                             {% for user in users %}
                                 <tr class="row100 body">
+                                    <td class="cell100 column1">{{ user.login }}</td>
                                     <td class="cell100 column1">{{ user.lname }}</td>
                                     <td class="cell100 column2">{{ user.fname }}</td>
-                                    <td class="cell100 column3">{{ user.state }}</td>
+                                    <td class="cell100 colDumn3">{{ states[user.state]  }}</td>
+                                    <td class="cell100 colDumn3"><a  class="btn edit btn-outline-primary" id="{{user.id}}" data-toggle="modal" data-target="#editPersonModal">edit</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -41,5 +89,8 @@
     </div>
 
     {{ include('Modal/modalAddUser.html.twig') }}
+    {{ include('Modal/modalEditUser.html.twig') }}
 {% endblock %}
-
+{% block additionalJS %}
+    {{ encore_entry_script_tags('person') }}
+{% endblock %}

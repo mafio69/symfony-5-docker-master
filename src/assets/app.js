@@ -6,8 +6,11 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
+const $ = require('jquery');
+const Swal = require("sweetalert2");
+const {fire} = require("sweetalert2");
 import './styles/app.css';
-
+import './jsFile/person';
 // start the Stimulus application
 import './bootstrap';
 console.log('Mafio');

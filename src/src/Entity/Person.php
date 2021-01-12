@@ -24,7 +24,7 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="login", type="string", length=10, nullable=false)
+     * @ORM\Column(name="login", type="string", length=100, nullable=false)
      */
     private $login;
 

@@ -7,6 +7,11 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
+    .autoProvideVariables({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+    })
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
@@ -21,6 +26,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', `./assets/app.js`)
+    .addEntry('person', `./assets/jsFile/person.js`)
     .addStyleEntry('style', `./assets/styles/app.css`)
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
