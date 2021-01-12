@@ -19,35 +19,35 @@ class Person
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="login", type="string", length=100, nullable=false)
      */
-    private $login;
+    private string $login;
 
     /**
      * @var string
      *
      * @ORM\Column(name="l_name", type="string", length=100, nullable=false, options={"comment"="last name"})
      */
-    private $lName;
+    private string $lName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="f_name", type="string", length=100, nullable=false, options={"comment"="first name"})
      */
-    private $fName;
+    private string $fName;
 
     /**
      * @var int
      *
      * @ORM\Column(name="state", type="smallint", nullable=false, options={"unsigned"=true,"comment"="1 - active, 2- banned, 3 - deleted"})
      */
-    private $state;
+    private int $state;
 
     public function getId(): ?int
     {

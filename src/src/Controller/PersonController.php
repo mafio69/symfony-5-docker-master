@@ -67,14 +67,14 @@ class PersonController extends AbstractController
     {
         $this->repository->save($request->request->all());
 
-        return $this->json('User added', 200);
+        return $this->json('User added');
     }
 
     public function edit(Request $request): JsonResponse
     {
         $person = $this->repository->getPerson($request->getContent());
 
-        return $this->json($person, 200);
+        return $this->json($person);
     }
 
     /**
@@ -86,6 +86,6 @@ class PersonController extends AbstractController
     {
         $this->repository->store($request->request->all());
 
-        return $this->json($request->request->all(), 200);
+        return $this->json($request->request->all());
     }
 }

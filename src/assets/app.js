@@ -13,4 +13,3 @@ import './styles/app.css';
 import './jsFile/person';
 // start the Stimulus application
 import './bootstrap';
-console.log('Mafio');

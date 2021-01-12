@@ -19,7 +19,7 @@ class PersonLikeProduct
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $personId;
+    private int $personId;
 
     /**
      * @var int
@@ -28,19 +28,19 @@ class PersonLikeProduct
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $productId;
+    private int $productId;
 
     /**
      * @ORM\ManyToOne(targetEntity="Person", inversedBy="person_like_product")
      * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      */
-    private $person;
+    private ?Person $person;
 
     /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="person_like_product")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
-    private $product;
+    private ?Product $product;
 
     public function getPersonId(): ?int
     {

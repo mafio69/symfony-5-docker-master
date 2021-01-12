@@ -21,28 +21,28 @@ class Product
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="info", type="text", length=65535, nullable=false, options={"comment"="opis html"})
      */
-    private $info;
+    private string $info;
 
     /**
      * @var DateTime
      *
      * @ORM\Column(name="public_date", type="date", nullable=false, options={"comment"="w sprzedazy od"})
      */
-    private $publicDate;
+    private DateTime $publicDate;
 
     public function getId(): ?int
     {

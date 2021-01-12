@@ -8,7 +8,6 @@ use App\Services\PersonStateConstants;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
-use http\Env\Request;
 
 /**
  * @method Person|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,7 +17,7 @@ use http\Env\Request;
  */
 class PersonRepository extends ServiceEntityRepository
 {
-    private $manager;
+    private EntityManagerInterface $manager;
 
     public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
