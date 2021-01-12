@@ -43,9 +43,10 @@ class PersonController extends AbstractController
         $users = null;
         $data = $request->request->all();
 
-        if ($request->request->all() || !empty($this->session->get(self::NAME_FILTER_SESSION))) {
+        if ($data || $this->session->get(self::NAME_FILTER_SESSION,[])) {
+            $data = $data ?? $this->session->get(self::NAME_FILTER_SESSION, []);
             $this->session->set(self::NAME_FILTER_SESSION, $data);
-            $users = $this->repository->filter($request->request->all());
+            $users = $this->repository->filter($data);
         } else {
             $users = $this->repository->findAll();
         }

@@ -18,7 +18,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Login</label>
                                 <input name="login" class="form-control" id="login" aria-describedby="emailHelp"
-                                       placeholder="Enter Login" value="{{ filterPerson.login }}">
+                                       placeholder="Enter Login" value="{{ filterPerson.login ?? ''}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">First Name</label>
@@ -34,7 +34,7 @@
                                 <label for="state">State</label>
                                 <select id="state" name="state" class="form-control">
                                     {% for key, state in states %}
-                                        <option {% if(filterPerson.state != false and  filterPerson.state == key) %}
+                                        <option {% if (filterPerson.state is defined)  and  filterPerson.state == key %}
                                                  selected="selected"
                                                 {% endif %}
                                                 value="{{ key }}">{{ state }}</option>"
