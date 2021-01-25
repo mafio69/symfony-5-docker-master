@@ -1,16 +1,3 @@
-add_person:
-    path: /add-person
-    controller: App\Controller\PersonController::save
-    methods: POST
-edit_person:
-    path: /edit-person
-    controller: App\Controller\PersonController::edit
-    methods: POST
-save_edit_person:
-    path: /save-edit-person
-    controller: App\Controller\PersonController::store
-    methods: POST
-filter_person:
-    path: /filter-person
-    controller: App\Controller\PersonController::filter
-    methods: POST
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index

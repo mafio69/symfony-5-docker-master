@@ -2,24 +2,23 @@ version: '3'
 
 services:
   database:
-    container_name: server-database
     build:
       context: ./database
     environment:
-      - MYSQL_DATABASE=symfony
-      - MYSQL_USER=appuser
-      - MYSQL_PASSWORD=apppassword
-      - MYSQL_ROOT_PASSWORD=symfony
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=5678
     ports:
-      - "3399:3306"
+      - "3306:3306"
     volumes:
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./database/data:/var/lib/mysql
 
   php-fpm:
-    container_name: php-web
     build:
       context: ./php-fpm
+    container_name: webPhp
     depends_on:
       - database
     environment:
@@ -28,14 +27,8 @@ services:
       - DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@database:3306/${DATABASE_NAME}?serverVersion=5.7
     volumes:
       - ../src:/var/www
-    extra_hosts:
-      - "localbox:192.168.99.1"
-    ports:
-      - "9010:9010"
-
 
   nginx:
-    container_name: server-nginx
     build:
       context: ./nginx
     volumes:
@@ -47,7 +40,7 @@ services:
     depends_on:
       - php-fpm
     ports:
-      - "8080:80"
+      - "80:80"
       - "443:443"
 
 
